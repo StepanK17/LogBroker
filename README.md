@@ -517,10 +517,3 @@ make test
 make coverage
 make proto
 ```
-
-## Связанные Документы
-
-- [README_ARCHITECTURE.md](README_ARCHITECTURE.md) — подробная архитектура проекта
-- [README_NETWORK.md](README_NETWORK.md) — сетевая часть и API
-- [README_PLAN.md](README_PLAN.md) — roadmap
-- [README_TASK.md](README_TASK.md) — текущий этап разработки

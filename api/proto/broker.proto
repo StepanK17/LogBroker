@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+package broker.v1;
+
+option go_package = "github.com/StepanK17/LogBroker/api/proto/brokerv1";
+
+service BrokerService {
+  rpc CreateTopic(CreateTopicRequest) returns (CreateTopicResponse);
+  rpc Produce(ProduceRequest) returns (ProduceResponse);
+  rpc Fetch(FetchRequest) returns (FetchResponse);
+  rpc CommitOffset(CommitOffsetRequest) returns (CommitOffsetResponse);
+  rpc GetCommittedOffset(GetCommittedOffsetRequest) returns (GetCommittedOffsetResponse);
+}
+
+message CreateTopicRequest {
+  string name = 1;
+  uint32 partitions = 2;
+}
+
+message CreateTopicResponse {}
+
+message ProduceRequest {
+  string topic = 1;
+  uint32 partition = 2;
+  bytes key = 3;
+  bytes value = 4;
+}
+
+message ProduceResponse {
+  uint64 offset = 1;
+  int64 timestamp_unix_nano = 2;
+}
+
+message FetchRequest {
+  string topic = 1;
+  uint32 partition = 2;
+  uint64 offset = 3;
+  uint32 max_records = 4;
+}
+
+message Record {
+  uint64 offset = 1;
+  int64 timestamp_unix_nano = 2;
+  bytes key = 3;
+  bytes value = 4;
+}
+
+message FetchResponse {
+  repeated Record records = 1;
+  uint64 next_offset = 2;
+}
+
+message CommitOffsetRequest {
+  string group = 1;
+  string topic = 2;
+  uint32 partition = 3;
+  uint64 offset = 4;
+}
+
+message CommitOffsetResponse {}
+
+message GetCommittedOffsetRequest {
+  string group = 1;
+  string topic = 2;
+  uint32 partition = 3;
+}
+
+message GetCommittedOffsetResponse {
+  uint64 offset = 1;
+  bool found = 2;
+}

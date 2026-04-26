@@ -1,0 +1,11 @@
+data/
+bin/
+dist/
+*.log
+*.tmp
+.gocache/
+.cache/
+coverage.out
+*.test
+*.prof
+.DS_Store

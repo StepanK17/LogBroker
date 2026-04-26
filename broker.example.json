@@ -1,0 +1,12 @@
+{
+  "grpc": {
+    "address": ":9090"
+  },
+  "http": {
+    "address": ":8080"
+  },
+  "storage": {
+    "data_dir": "./data",
+    "segment_max_bytes": 1048576
+  }
+}
